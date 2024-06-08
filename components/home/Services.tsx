@@ -1,8 +1,8 @@
 import {
+  BookOpenCheck,
   BookOpenIcon,
   MessagesSquareIcon,
-  Settings2Icon,
-  TabletSmartphoneIcon,
+  UserRoundSearch,
 } from "lucide-react";
 
 export default function Services() {
@@ -13,7 +13,11 @@ export default function Services() {
         className="container 
         lg:max-w-screen-xl
        xl:container py-24 lg:py-32 "
+        id="services"
       >
+        <div className="flex justify-center">
+          <h2 className=" text-4xl font-bold"> Nos services </h2>
+        </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 items-center gap-2">
           {/* Icon Block */}
           <a
@@ -21,7 +25,7 @@ export default function Services() {
             href="#"
           >
             <div className="flex justify-center items-center w-12 bg-primary h-12 border rounded-lg">
-              <TabletSmartphoneIcon className="flex-shrink-0 w-6 h-6 text-primary-foreground" />
+              <BookOpenCheck className="flex-shrink-0 w-6 h-6 text-primary-foreground" />
             </div>
             <div className="mt-5">
               <h3 className="text-lg font-semibold">
@@ -40,7 +44,7 @@ export default function Services() {
             href="#"
           >
             <div className="flex justify-center items-center w-12 bg-primary h-12 border rounded-lg">
-              <Settings2Icon className="flex-shrink-0 w-6 h-6 text-primary-foreground" />
+              <UserRoundSearch className="flex-shrink-0 w-6 h-6 text-primary-foreground" />
             </div>
             <div className="mt-5">
               <h3 className="text-lg font-semibold">

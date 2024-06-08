@@ -2,7 +2,10 @@ import Image from "next/image";
 
 export const Whytochooseus = () => {
   return (
-    <div className=" relative bg-gradient-to-bl from-primary-foreground via-primary-foreground to-background">
+    <div
+      className=" relative bg-gradient-to-bl from-primary-foreground via-primary-foreground to-background"
+      id="pourquoi-nous-choisir"
+    >
       <div className="py-6 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-6">
         <div className=" dark:lg:bg-darker lg:p-16 rounded-[4rem] space-y-6 md:flex flex-row-reverse md:gap-6 justify-center md:space-y-0 lg:items-center">
           <div className="md:7/12 lg:w-1/2">

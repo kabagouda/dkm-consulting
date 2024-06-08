@@ -130,7 +130,7 @@ export const Navigation = () => {
             <Dialog>
               <DialogTrigger>
                 <Button variant={"default"}>
-                  <span className="pr-3">se connecter</span>
+                  <span className="pr-3">Se connecter</span>
                   <MoveRight className="h-6 w-6" />
                 </Button>
               </DialogTrigger>
@@ -146,7 +146,9 @@ export const Navigation = () => {
                         name="id"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel htmlFor="id">id</FormLabel>
+                            <FormLabel htmlFor="id">
+                              Votre identifiant
+                            </FormLabel>
                             <FormControl>
                               <Input
                                 id="id"
@@ -165,7 +167,7 @@ export const Navigation = () => {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel htmlFor="password">
-                              Mot de passe
+                              votre mot de passe
                             </FormLabel>
                             <FormControl>
                               <Input

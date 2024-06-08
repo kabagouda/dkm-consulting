@@ -1,20 +1,15 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Separator } from "@/components/ui/separator";
 
 export default function Contact() {
   return (
     <>
       {/* Hero */}
-      <div className="relative bg-gradient-to-bl from-primary-foreground via-primary-foreground to-background">
+      <div
+        className="relative bg-gradient-to-bl from-primary-foreground via-primary-foreground to-background"
+        id="contact"
+      >
         <div className="   mx-20 sm:max-w-xl md:max-w-full lg:max-w-screen-xl lg:py-24">
           {/* Grid */}
           <div className="grid items-center md:grid-cols-2 gap-8 lg:gap-12">
