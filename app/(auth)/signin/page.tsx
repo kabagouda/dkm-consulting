@@ -2,31 +2,24 @@
 import signIn from "@/firebase/auth/signIn";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 function Page(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // Handle form submission
   const handleForm = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    // Attempt to sign in with provided email and password
     const { result, error } = await signIn(email, password);
 
     if (error) {
-      // Display and log any sign-in errors
+      toast.error("Probleme lors de la connexion ");
       console.log(error);
       return;
     }
-
-    // Sign in successful
     console.log(result);
-
-    // Redirect to the admin page
-    // Typically you would want to redirect them to a protected page an add a check to see if they are admin or
-    // create a new page for admin
     router.push("/dashboard");
   };
 

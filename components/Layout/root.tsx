@@ -5,7 +5,7 @@ export const menuData: Menu[] = [
   {
     id: 2,
     label: "Users",
-    path: "/dashboard/users",
+    path: "/dashboard",
     icon: <Users2 />,
   },
 ];
