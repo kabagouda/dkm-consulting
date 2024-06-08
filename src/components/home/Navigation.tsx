@@ -74,8 +74,8 @@ export const Navigation = () => {
       setCookie("pass", cookiepass, {
         expires: expiresAt,
       });
-      toast.success("Connecté avec succès");
       router.push(`/client/${values.id}`);
+      toast.success("Connecté avec succès");
     } else {
       toast.error("Mauvais identifiants");
       console.log("Wrong password");

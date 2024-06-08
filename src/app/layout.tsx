@@ -1,7 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
 import { AuthContextProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/theme/ThemeProvider";
-import { NextUIProvider } from "@nextui-org/system";
 import clsx from "clsx";
 import { GeistSans } from "geist/font/sans";
 import type { Metadata } from "next";

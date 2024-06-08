@@ -78,7 +78,7 @@ export default async function page({ params }: { params: { id: string } }) {
                 </div>
               </div>
             </div>
-            <div className=" bg-blue-100 px-4 rounded-lg mt-6 border-t border-gray-200 pt-6 dark:border-gray-700">
+            <div className=" bg-blue-100 px-4 dark:bg-black rounded-lg mt-6 border-t border-gray-200 pt-6 dark:border-gray-700">
               <h2 className="text-lg font-bold dark:text-gray-200">Étapes</h2>
 
               <div className="mt-4 space-y-4">
