@@ -28,6 +28,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { deleteDocumentById } from "@/firebase/firestore/getData";
 import { customer } from "@/types/customer";
 import {
   CaretSortIcon,
@@ -48,6 +49,7 @@ import {
 } from "@tanstack/react-table";
 import { LucideStepForward } from "lucide-react";
 import * as React from "react";
+import { toast } from "sonner";
 
 export const columns: ColumnDef<customer>[] = [
   {
@@ -196,9 +198,9 @@ export const columns: ColumnDef<customer>[] = [
             </DialogTrigger>
             <DialogContent className="">
               <DialogHeader>
-                <DialogTitle>Mettre a jour l etape</DialogTitle>
+                <DialogTitle>Mettre a jour l&apos;etape</DialogTitle>
                 <DialogDescription>
-                  Ajouter les informations sur le step
+                  Ajouter les informations sur le l&apos;etape
                 </DialogDescription>
               </DialogHeader>
               <UpdateSteps customerData={row.original} />
@@ -213,6 +215,11 @@ export const columns: ColumnDef<customer>[] = [
     enableHiding: false,
     cell: ({ row }: any) => {
       const User = row.original;
+      console.log(User);
+      const deleteUser = async (id: string) => {
+        deleteDocumentById("customers", id);
+        toast.success("Le client a été supprimé");
+      };
 
       return (
         <DropdownMenu>
@@ -230,7 +237,9 @@ export const columns: ColumnDef<customer>[] = [
               Copy user ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Delete User</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => deleteUser(User.id)}>
+              Delete User
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

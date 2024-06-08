@@ -114,9 +114,9 @@ export default function Contact() {
             personnes sont satisfaites de nos services
           </div>
           {/* Clients */}
-          <div className="flex flex-wrap gap-x-6 sm:gap-x-12 lg:gap-x-24">
+          {/* <div className="flex flex-wrap gap-x-6 sm:gap-x-12 lg:gap-x-24">
             Lise des images des client minimum 50
-          </div>
+          </div> */}
           {/* End Clients */}
         </div>
         {/* End Clients Section */}

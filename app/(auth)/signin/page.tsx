@@ -10,6 +10,7 @@ function Page(): JSX.Element {
   const router = useRouter();
 
   const handleForm = async (event: { preventDefault: () => void }) => {
+    toast.info("Connexion en cours");
     event.preventDefault();
 
     const { result, error } = await signIn(email, password);

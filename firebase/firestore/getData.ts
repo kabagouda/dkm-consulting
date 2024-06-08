@@ -1,6 +1,7 @@
 import { customer } from "@/types/customer";
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -41,4 +42,19 @@ export async function getCollection(collectionName: string) {
   }
 
   return { documents, error };
+}
+
+export async function deleteDocumentById(collectionName: string, id: string) {
+  const docRef = doc(db, collectionName, id);
+  let success = false;
+  let error = null;
+
+  try {
+    await deleteDoc(docRef);
+    success = true;
+  } catch (e) {
+    error = e;
+  }
+
+  return { success, error };
 }

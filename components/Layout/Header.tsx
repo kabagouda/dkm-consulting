@@ -19,17 +19,21 @@ import {
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "@/types/menu";
+import { deleteCookie } from "cookies-next";
 import { getAuth, signOut } from "firebase/auth";
 import { CarFront, PanelLeft, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "sonner";
 import ModeToggle from "../general/modetoggle";
 import { menuData } from "./root";
 export default function Header() {
   const headerMenu: Menu[] = menuData;
   const Pathname = usePathname();
+  const router = useRouter();
+
   const auth = getAuth();
   return (
     <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
@@ -112,6 +116,9 @@ export default function Header() {
             onClick={() => {
               signOut(auth);
               sessionStorage.removeItem("user");
+              deleteCookie("user");
+              toast.success("Vous êtes déconnecté");
+              router.push("/signin");
             }}
           >
             Se déconnecter

@@ -29,6 +29,7 @@ export function AuthContextProvider({
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        console.log(user);
       } else {
         setUser(null);
       }
@@ -40,7 +41,7 @@ export function AuthContextProvider({
 
   return (
     <AuthContext.Provider value={{ user }}>
-      {loading ? <div>Loading...</div> : children}
+      {loading ? <div></div> : children}
     </AuthContext.Provider>
   );
 }

@@ -154,25 +154,26 @@ function Dialogform() {
 
       if (data.visaType === "Étudiant") {
         steps = [
-          { name: "Admission dans une école", completed: false },
           { name: "Analyse du dossier", completed: false },
-          { name: "Attente de reponse", completed: false },
-          { name: "Biométrie", completed: false },
+          { name: "Soumission du dossier", completed: false },
+          { name: "Admission dans une école", completed: false },
+          { name: "Demande de CAQ/LAP", completed: false },
           {
             name: "Constitution du dossier de la demande de visa",
             completed: false,
           },
-          { name: "Demande de CAQ/LAP", completed: false },
           { name: "Demande de visa", completed: false },
-          { name: "Réception du passeport", completed: false },
-          { name: "Soumission du dossier", completed: false },
-          { name: "Soumission du passport", completed: false },
+          { name: "Biométrie", completed: false },
+          { name: "Attente de reponse", completed: false },
           { name: "Visite médicale", completed: false },
+
+          { name: "Soumission du passport", completed: false },
+          { name: "Réception du passeport", completed: false },
         ];
       } else if (data.visaType === "Visiteur") {
         steps = [
           { name: "Analyse du dossier", completed: false },
-          { name: "Lettre d'invitation", completed: false },
+          { name: "Lettre invitation", completed: false },
           {
             name: "Constitution du dossier de la demande de visa",
             completed: false,
