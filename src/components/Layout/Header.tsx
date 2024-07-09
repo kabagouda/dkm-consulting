@@ -59,11 +59,7 @@ export default function Header() {
                 href={menu.path}
                 className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
               >
-                {React.isValidElement(menu.icon) ? (
-                  React.cloneElement(menu.icon)
-                ) : (
-                  <span className="h-5 w-5 p-3">{menu.icon}</span>
-                )}
+                {React.isValidElement(menu.icon) ? React.cloneElement(menu.icon) : <span className="h-5 w-5 p-3">{menu.icon}</span>}
                 {menu.label}
               </Link>
             ))}
@@ -85,27 +81,13 @@ export default function Header() {
       </Breadcrumb>
       <div className="relative ml-auto flex-1 md:grow-0">
         <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-        <Input
-          type="search"
-          placeholder="Search..."
-          className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]"
-        />
+        <Input type="search" placeholder="Search..." className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[320px]" />
       </div>
       <ModeToggle />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button
-            variant="outline"
-            size="icon"
-            className="overflow-hidden rounded-full"
-          >
-            <Image
-              src="/images/placeholder-user.jpg"
-              width={36}
-              height={36}
-              alt="Avatar"
-              className="overflow-hidden rounded-full"
-            />
+          <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
+            <Image src="/images/placeholder-user.jpg" width={36} height={36} alt="Avatar" className="overflow-hidden rounded-full" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end">
@@ -118,7 +100,8 @@ export default function Header() {
               sessionStorage.removeItem("user");
               deleteCookie("user");
               toast.success("Vous êtes déconnecté");
-              router.push("/signin");
+              window.location.reload();
+              router.push("/");
             }}
           >
             Se déconnecter

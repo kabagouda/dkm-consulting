@@ -19,6 +19,7 @@ export default async function signUp(email: string, password: string) {
     });
   } catch (e) {
     error = e;
+    toast.error("Une erreur est survenue lors de l'inscription");
   }
 
   return { result, error };
