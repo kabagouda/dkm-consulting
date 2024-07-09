@@ -2,14 +2,7 @@
 import { UpdateSteps } from "@/components/Users/updateSteps";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -20,21 +13,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { deleteDocumentById } from "@/firebase/firestore/getData";
 import { customer } from "@/types/customer";
-import {
-  CaretSortIcon,
-  ChevronDownIcon,
-  DotsHorizontalIcon,
-} from "@radix-ui/react-icons";
+import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -56,20 +38,13 @@ export const columns: ColumnDef<customer>[] = [
     id: "select",
     header: ({ table }: { table: any }) => (
       <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
+        checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
       />
     ),
     cell: ({ row }: any) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-      />
+      <Checkbox checked={row.getIsSelected()} onCheckedChange={(value) => row.toggleSelected(!!value)} aria-label="Select row" />
     ),
     enableSorting: false,
     enableHiding: false,
@@ -77,112 +52,80 @@ export const columns: ColumnDef<customer>[] = [
   {
     accessorKey: "id",
     header: "Id",
-    cell: ({ row }: any) => (
-      <div className="capitalize">{row.getValue("id")}</div>
-    ),
+    cell: ({ row }: any) => <div className="capitalize">{row.getValue("id")}</div>,
   },
   {
     accessorKey: "lastname",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Nom
           <CaretSortIcon className=" h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("lastname")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("lastname")}</div>,
   },
   {
     accessorKey: "firstname",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Prénom
           <CaretSortIcon className="ml-1 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("firstname")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("firstname")}</div>,
   },
   {
     accessorKey: "email",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Email
           <CaretSortIcon className="ml-1 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("email")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "visaType",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Type de visa
           <CaretSortIcon className="ml-1 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("visaType")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("visaType")}</div>,
   },
   {
     accessorKey: "password",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Mot de passe
           <CaretSortIcon className="ml-1 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("password")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("password")}</div>,
   },
 
   {
     accessorKey: "phoneNumber",
     header: ({ column }: any) => {
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
+        <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Numéro de téléphone
           <CaretSortIcon className="ml-1 h-4 w-4" />
         </Button>
       );
     },
-    cell: ({ row }: any) => (
-      <div className="lowercase pl-[17px]">{row.getValue("phoneNumber")}</div>
-    ),
+    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("phoneNumber")}</div>,
   },
   {
     id: "actionsStep",
@@ -199,9 +142,7 @@ export const columns: ColumnDef<customer>[] = [
             <DialogContent className="">
               <DialogHeader>
                 <DialogTitle>Mettre a jour l&apos;etape</DialogTitle>
-                <DialogDescription>
-                  Ajouter les informations sur le l&apos;etape
-                </DialogDescription>
+                <DialogDescription>Ajouter les informations sur le l&apos;etape</DialogDescription>
               </DialogHeader>
               <UpdateSteps customerData={row.original} />
             </DialogContent>
@@ -219,6 +160,7 @@ export const columns: ColumnDef<customer>[] = [
       const deleteUser = async (id: string) => {
         deleteDocumentById("customers", id);
         toast.success("Le client a été supprimé");
+        window.location.reload();
       };
 
       return (
@@ -231,15 +173,9 @@ export const columns: ColumnDef<customer>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(User.id)}
-            >
-              Copy user ID
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(User.id)}>Copy user ID</DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={() => deleteUser(User.id)}>
-              Delete User
-            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => deleteUser(User.id)}>Delete User</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -251,11 +187,8 @@ export function CustomersTable(documents: any) {
   const { data } = documents;
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
@@ -283,9 +216,7 @@ export function CustomersTable(documents: any) {
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
+          onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
           className="max-w-sm"
         />
         <DropdownMenu>
@@ -304,9 +235,7 @@ export function CustomersTable(documents: any) {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
+                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
                   >
                     {column.id}
                   </DropdownMenuCheckboxItem>
@@ -323,12 +252,7 @@ export function CustomersTable(documents: any) {
                 {headerGroup.headers.map((header: any) => {
                   return (
                     <TableHead key={header.id}>
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                      {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   );
                 })}
@@ -338,26 +262,15 @@ export function CustomersTable(documents: any) {
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row: any) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
+                <TableRow key={row.id} data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell: any) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
+                    <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
                 </TableRow>
               ))
             ) : (
               <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
+                <TableCell colSpan={columns.length} className="h-24 text-center">
                   No results.
                 </TableCell>
               </TableRow>
@@ -367,24 +280,13 @@ export function CustomersTable(documents: any) {
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
         <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{" "}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
+          {table.getFilteredSelectedRowModel().rows.length} of {table.getFilteredRowModel().rows.length} row(s) selected.
         </div>
         <div className="space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
+          <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
             Previous
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
+          <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
             Next
           </Button>
         </div>
