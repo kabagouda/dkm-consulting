@@ -1,13 +1,5 @@
 import { customer } from "@/types/customer";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  query,
-} from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, getFirestore, query } from "firebase/firestore";
 import firebase_app from "../config";
 
 const db = getFirestore(firebase_app);

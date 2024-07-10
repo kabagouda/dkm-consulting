@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { deleteDocumentById } from "@/firebase/firestore/getData";
 import { customer } from "@/types/customer";
 import { CaretSortIcon, ChevronDownIcon, CopyIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
@@ -29,6 +28,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
+import { deleteDoc, doc, getFirestore } from "firebase/firestore";
 import { LucideStepForward } from "lucide-react";
 import * as React from "react";
 import { toast } from "sonner";
@@ -187,9 +187,16 @@ export const columns: ColumnDef<customer>[] = [
     cell: ({ row }: any) => {
       const User = row.original;
       const deleteUser = async (id: string) => {
-        deleteDocumentById("customers", id);
-        toast.success("Le client a été supprimé");
-        window.location.reload();
+        const db = getFirestore();
+        const docRef = doc(db, "customers", id);
+
+        try {
+          await deleteDoc(docRef);
+          toast.success("Le client a été supprimé");
+          window.location.reload();
+        } catch (error) {
+          toast.error("Erreur lors de la suppression du client");
+        }
       };
 
       return (
