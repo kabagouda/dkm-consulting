@@ -1,14 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import getDocument from "@/firebase/firestore/getData";
@@ -60,9 +53,7 @@ export const Navigation = () => {
 
   async function onSubmit(values: Zod.infer<typeof customerAcessSchema>) {
     toast.info("Connexion en cours");
-    const customerData = (
-      await getDocument("customers", values.id)
-    ).result?.data() as customer | undefined;
+    const customerData = (await getDocument("customers", values.id)).result?.data() as customer | undefined;
 
     if (values.password === customerData?.password) {
       const expiresAt = new Date(Date.now() + 1 * 24 * 60 * 60 * 1000);
@@ -78,7 +69,6 @@ export const Navigation = () => {
       toast.success("Connecté avec succès");
     } else {
       toast.error("Mauvais identifiants");
-      console.log("Wrong password");
     }
   }
   const router = useRouter();
@@ -95,11 +85,7 @@ export const Navigation = () => {
                 <nav className=" flex flex-col gap-4 mt-5">
                   {routes.map((route, i) => (
                     <Button asChild key={i} variant={"ghost"}>
-                      <Link
-                        key={i}
-                        href={route.href}
-                        className="text-sm font-medium transition-colors"
-                      >
+                      <Link key={i} href={route.href} className="text-sm font-medium transition-colors">
                         {route.label}
                       </Link>
                     </Button>
@@ -116,11 +102,7 @@ export const Navigation = () => {
           <nav className="mx-6  items-center space-x-4 lg:space-x-6 hidden md:block">
             {routes.map((route, i) => (
               <Button asChild key={i} variant={"ghost"}>
-                <Link
-                  key={i}
-                  href={route.href}
-                  className="text-sm font-semibold transition-colors"
-                >
+                <Link key={i} href={route.href} className="text-sm font-semibold transition-colors">
                   {route.label}
                 </Link>
               </Button>
@@ -136,25 +118,16 @@ export const Navigation = () => {
               </DialogTrigger>
               <DialogContent>
                 <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-8"
-                  >
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
                     <div className="grid gap-4 py-4">
                       <FormField
                         control={form.control}
                         name="id"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel htmlFor="id">
-                              Votre identifiant
-                            </FormLabel>
+                            <FormLabel htmlFor="id">Votre identifiant</FormLabel>
                             <FormControl>
-                              <Input
-                                id="id"
-                                {...field}
-                                className="col-span-3"
-                              />
+                              <Input id="id" {...field} className="col-span-3" />
                             </FormControl>
                             <FormMessage className="col-span-4 text-red-500"></FormMessage>
                           </FormItem>
@@ -166,15 +139,9 @@ export const Navigation = () => {
                         name="password"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel htmlFor="password">
-                              votre mot de passe
-                            </FormLabel>
+                            <FormLabel htmlFor="password">votre mot de passe</FormLabel>
                             <FormControl>
-                              <Input
-                                id="password"
-                                {...field}
-                                className="col-span-3"
-                              />
+                              <Input id="password" {...field} className="col-span-3" />
                             </FormControl>
                             <FormMessage className="col-span-4 text-red-500"></FormMessage>
                           </FormItem>

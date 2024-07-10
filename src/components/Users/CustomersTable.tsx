@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { deleteDocumentById } from "@/firebase/firestore/getData";
 import { customer } from "@/types/customer";
-import { CaretSortIcon, ChevronDownIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
+import { CaretSortIcon, ChevronDownIcon, CopyIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -52,7 +52,21 @@ export const columns: ColumnDef<customer>[] = [
   {
     accessorKey: "id",
     header: "Id",
-    cell: ({ row }: any) => <div className="capitalize">{row.getValue("id")}</div>,
+    cell: ({ row }: any) => (
+      <div className="flex items-center space-x-2">
+        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">{row.getValue("id")}</code>
+        <Button
+          variant="link"
+          size={"sm"}
+          onClick={() => {
+            navigator.clipboard.writeText(row.getValue("id"));
+            toast.success("Id copié dans le presse-papier");
+          }}
+        >
+          <CopyIcon className="h-4 w-4" />
+        </Button>
+      </div>
+    ),
   },
   {
     accessorKey: "lastname",
@@ -64,7 +78,7 @@ export const columns: ColumnDef<customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("lastname")}</div>,
+    cell: ({ row }: any) => <div className=" uppercase pl-[17px]">{row.getValue("lastname")}</div>,
   },
   {
     accessorKey: "firstname",
@@ -76,7 +90,7 @@ export const columns: ColumnDef<customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("firstname")}</div>,
+    cell: ({ row }: any) => <div className=" capitalize pl-[17px]">{row.getValue("firstname")}</div>,
   },
   {
     accessorKey: "email",
@@ -100,7 +114,7 @@ export const columns: ColumnDef<customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("visaType")}</div>,
+    cell: ({ row }: any) => <div className=" capitalize pl-[17px]">{row.getValue("visaType")}</div>,
   },
   {
     accessorKey: "password",
@@ -112,7 +126,23 @@ export const columns: ColumnDef<customer>[] = [
         </Button>
       );
     },
-    cell: ({ row }: any) => <div className="lowercase pl-[17px]">{row.getValue("password")}</div>,
+    cell: ({ row }: any) => (
+      <div className="flex items-center space-x-2">
+        <code className="relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold">
+          {row.getValue("password")}
+        </code>
+        <Button
+          variant="link"
+          size={"sm"}
+          onClick={() => {
+            navigator.clipboard.writeText(row.getValue("password"));
+            toast.success("Mot de passe copié dans le presse-papier");
+          }}
+        >
+          <CopyIcon className="h-4 w-4" />
+        </Button>
+      </div>
+    ),
   },
 
   {
@@ -156,7 +186,6 @@ export const columns: ColumnDef<customer>[] = [
     enableHiding: false,
     cell: ({ row }: any) => {
       const User = row.original;
-      console.log(User);
       const deleteUser = async (id: string) => {
         deleteDocumentById("customers", id);
         toast.success("Le client a été supprimé");
@@ -173,7 +202,18 @@ export const columns: ColumnDef<customer>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => navigator.clipboard.writeText(User.id)}>Copy user ID</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                navigator.clipboard.writeText(`
+                  Voici tes informations de connexion.
+                  Identifiant : ${User.id}
+                  Mot de passe : ${User.password}
+                `);
+                toast.success("Identifiant copié dans le presse-papier");
+              }}
+            >
+              Copier les identifiants
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => deleteUser(User.id)}>Delete User</DropdownMenuItem>
           </DropdownMenuContent>
