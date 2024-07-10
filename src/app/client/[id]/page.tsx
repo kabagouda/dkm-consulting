@@ -37,44 +37,26 @@ export default async function page({ params }: { params: { id: string } }) {
                 <p className="text-xl font-bold dark:text-gray-200">
                   {data.firstname} {data.lastname}
                 </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  {data.email}
-                </p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">{data.email}</p>
               </div>
             </div>
             <div className="mt-6 border-t border-gray-200 pt-6 dark:border-gray-700">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Identifiant
-                  </p>
-                  <p className="text-base font-medium dark:text-gray-200">
-                    {params.id}
-                  </p>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Identifiant</p>
+                  <p className="text-base font-medium dark:text-gray-200">{params.id}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Visa
-                  </p>
-                  <p className="text-base font-medium dark:text-gray-200">
-                    {data.visaType}
-                  </p>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Visa</p>
+                  <p className="text-base font-medium dark:text-gray-200">{data.visaType}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Email
-                  </p>
-                  <p className="text-base font-medium dark:text-gray-200">
-                    {data.email}
-                  </p>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Email</p>
+                  <p className="text-base font-medium dark:text-gray-200">{data.email}</p>
                 </div>
                 <div>
-                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                    Téléphone
-                  </p>
-                  <p className="text-base font-medium dark:text-gray-200">
-                    {data.phoneNumber}
-                  </p>
+                  <p className="text-sm font-medium text-gray-500 dark:text-gray-400">Téléphone</p>
+                  <p className="text-base font-medium dark:text-gray-200">{data.phoneNumber}</p>
                 </div>
               </div>
             </div>
@@ -84,30 +66,21 @@ export default async function page({ params }: { params: { id: string } }) {
               <div className="mt-4 space-y-4">
                 {data.steps &&
                   data.steps.map((step, index) => (
-                    <div
-                      key={index}
-                      className="border-b border-gray-200 pb-4 dark:border-gray-700"
-                    >
+                    <div key={index} className="border-b border-gray-200 pb-4 dark:border-gray-700">
                       <div className="text-md font-medium dark:text-gray-200">
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                          Étape {index + 1}
-                        </p>
+                        <p className="text-sm text-gray-500 dark:text-gray-400">Étape {index + 1}</p>
                         <p>{step.name}</p>
                       </div>
 
                       <div className="flex items-center space-x-2 mt-2 justify-end">
                         {step.completed ? (
                           <>
-                            <p className="text-sm font-medium dark:text-green-400">
-                              Terminé
-                            </p>
+                            <p className="text-sm font-medium dark:text-green-400">Terminé</p>
                             <Check className=" dark:text-green-400" />
                           </>
                         ) : (
                           <>
-                            <p className="text-sm font-medium dark:text-gray-200">
-                              En attente
-                            </p>
+                            <p className="text-sm font-medium dark:text-gray-200">En attente</p>
                             <CircleDot />
                           </>
                         )}
@@ -119,7 +92,7 @@ export default async function page({ params }: { params: { id: string } }) {
           </div>
         </div>
       ) : (
-        <div>No data available</div>
+        <div>Pas de données disponible</div>
       )}
     </div>
   );
